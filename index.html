@@ -133,6 +133,56 @@
           background:no-repeat center/contain}
   @media(max-width:720px){.engines{grid-template-columns:1fr}}
 
+  /* ── 가격 · 구독 ── */
+  #pricing{background:linear-gradient(180deg,var(--dark),#08090a)}
+  .price-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .price-head .sec-h,.price-head .sec-sub{text-align:center}
+  .price-head .sec-sub{margin-left:auto;margin-right:auto}
+  .toggle{display:inline-flex;align-items:center;gap:12px;margin-top:26px;background:var(--panel);
+       border:1px solid var(--line);border-radius:999px;padding:5px}
+  .toggle button{font-family:inherit;font-size:13.5px;font-weight:700;color:var(--mut);background:transparent;
+       border:0;border-radius:999px;padding:9px 18px;cursor:pointer;transition:.15s}
+  .toggle button[aria-pressed="true"]{background:var(--cyan);color:var(--dark)}
+  .toggle .save{font-size:11px;font-weight:800;color:var(--coral);margin-left:2px}
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px;align-items:stretch}
+  @media(max-width:980px){.tiers{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.tiers{grid-template-columns:1fr}}
+  .tier{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;
+       padding:24px 22px;position:relative;transition:transform .16s,border-color .16s}
+  .tier:hover{transform:translateY(-3px);border-color:var(--line-2)}
+  .tier.pop{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 24px 60px rgba(14,206,221,.1)}
+  .tier .pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--dark);
+       font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:4px 12px;border-radius:999px;white-space:nowrap}
+  .tier .tn{font-size:13px;font-weight:800;color:var(--cyan-dp);letter-spacing:.3px}
+  .tier .td{font-size:12px;color:var(--mut);margin-top:5px;min-height:32px;line-height:1.5;word-break:keep-all}
+  .tier .amt{font-family:var(--serif);font-weight:700;font-size:30px;letter-spacing:-.5px;margin-top:14px;line-height:1}
+  .tier .amt small{font-size:14px;color:var(--mut);font-weight:600;font-family:var(--sans);letter-spacing:0}
+  .tier .amt .free{color:var(--cyan)}
+  .tier .per{font-size:11.5px;color:var(--mut-2);margin-top:6px;min-height:16px}
+  .tier ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .tier li{font-size:12.7px;color:var(--cream);opacity:.9;padding-left:20px;position:relative;line-height:1.5;word-break:keep-all}
+  .tier li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:800;font-size:11px;top:1px}
+  .tier li.off{opacity:.4}.tier li.off::before{content:"–";color:var(--mut-2)}
+  .tier .tcta{width:100%;font-family:inherit;font-size:13.5px;font-weight:800;padding:12px;border-radius:10px;cursor:pointer;
+       border:1px solid var(--line-2);background:transparent;color:var(--white);transition:.15s;text-align:center;text-decoration:none;display:block}
+  .tier .tcta:hover{border-color:var(--cyan);color:var(--cyan)}
+  .tier.pop .tcta{background:var(--cyan);color:var(--dark);border-color:var(--cyan)}
+  .tier.pop .tcta:hover{background:var(--cyan-dp)}
+  .tier.free-tier .tcta{background:var(--coral);color:#fff;border-color:var(--coral)}
+  .tier.free-tier .tcta:hover{background:#ff6a50}
+  .price-trust{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:30px;font-size:12px;color:var(--mut-2)}
+  .price-trust span{display:inline-flex;align-items:center;gap:6px}
+  .price-trust b{color:var(--cyan-dp)}
+  /* FAQ */
+  .faq{max-width:760px;margin:52px auto 0;display:flex;flex-direction:column;gap:2px}
+  .faq details{border-top:1px solid var(--line);padding:4px 0}
+  .faq details:last-child{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;font-size:15px;font-weight:700;padding:16px 2px;display:flex;justify-content:space-between;align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--cyan);font-weight:800;font-size:20px;transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq p{font-size:13.5px;color:var(--mut);line-height:1.7;padding:0 2px 18px;word-break:keep-all}
+
   /* 산출물 */
   .out{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;margin-top:46px}
   .out .shots{display:flex;gap:16px}
@@ -156,6 +206,12 @@
 
   form.demos-form{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
   .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:22px}
+  .seg.seg6{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:520px){.seg.seg6{grid-template-columns:repeat(2,1fr)}}
+  .seg button[data-type="sample"][aria-pressed="true"],
+  .seg button[data-type="subscribe"][aria-pressed="true"]{border-color:var(--cyan);background:rgba(14,206,221,.08);color:var(--white)}
+  .seg button[data-type="sample"][aria-pressed="true"] small,
+  .seg button[data-type="subscribe"][aria-pressed="true"] small{color:var(--cyan)}
   .seg button{font-family:inherit;font-size:13.5px;font-weight:700;color:var(--mut);background:var(--panel-2);
        border:1px solid var(--line);border-radius:10px;padding:13px 12px;cursor:pointer;text-align:left;transition:.14s;line-height:1.35}
   .seg button small{display:block;font-size:11px;color:var(--mut-2);font-weight:600;margin-top:3px}
@@ -231,9 +287,10 @@
     <a href="#value">가치</a>
     <a href="#engines">엔진</a>
     <a href="#output">산출물</a>
+    <a href="#pricing">가격·구독</a>
     <a href="#contact">문의</a>
   </div>
-  <a class="cta" href="#contact" onclick="pickType('demo')">데모 신청</a>
+  <a class="cta" href="#pricing">구독 시작</a>
 </div></nav>
 
 <!-- ── 히어로 ── -->
@@ -245,8 +302,8 @@
     <p class="lead">Demos는 발표 전 정책·메시지·위기 대응을 <b>여론·구조·재정·반박 가능성</b> 네 렌즈로 검증합니다.
        혼란을 선택지로, 불안을 근거로, 공격 가능성을 수정 문장으로 바꿉니다.</p>
     <div class="acts">
-      <button class="btn btn-primary" onclick="pickType('demo')">데모 신청 →</button>
-      <a class="btn btn-ghost" href="#output">샘플 브리프 보기</a>
+      <button class="btn btn-primary" onclick="pickType('sample')">무료 샘플 받기 →</button>
+      <a class="btn btn-ghost" href="#pricing">구독·가격 보기</a>
     </div>
     <div class="kw">
       <label for="kwin">키워드로 바로 신청</label>
@@ -357,8 +414,106 @@
         <li>매운맛은 ‘상대 시점 시뮬레이션’ 안에만 — 봉합용</li>
         <li>법적 고지·조사 인용 기준까지 검토 완료</li>
       </ul>
-      <a class="btn btn-cyan" href="#contact" onclick="pickType('demo')">샘플 브리프 요청 →</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-cyan" href="#contact" onclick="pickType('demo')">샘플 브리프 요청 →</a>
+        <a class="btn btn-ghost" href="#pricing">구독·가격 보기</a>
+      </div>
     </div>
+  </div>
+</div></section>
+
+<!-- ── 가격 · 구독 ── -->
+<section class="blk" id="pricing"><div class="wrap">
+  <div class="price-head rv">
+    <div class="sec-eyebrow">Pricing &amp; Subscription</div>
+    <h2 class="sec-h">한 권으로 시작해, 매주 받아 봅니다.</h2>
+    <p class="sec-sub">방법론 샘플은 무료로 보내 드립니다. 사안이 생기면 한 건(eBook)으로,
+       상시로 필요하면 구독으로 — 정기 브리프와 지난 호 열람까지 함께 옵니다.</p>
+    <div class="toggle" role="group" aria-label="결제 주기">
+      <button id="bmonthly" aria-pressed="true"  onclick="setBilling('m')">월간</button>
+      <button id="bannual"  aria-pressed="false" onclick="setBilling('y')">연간 <span class="save">−20%</span></button>
+    </div>
+  </div>
+
+  <div class="tiers rv">
+    <!-- 무료: 리드 마그넷 -->
+    <div class="tier free-tier">
+      <div class="tn">무료 · 방법론 샘플</div>
+      <div class="td">네 렌즈가 어떻게 작동하는지, 발췌본으로 먼저 확인</div>
+      <div class="amt"><span class="free">₩0</span></div>
+      <div class="per">이메일로 즉시 발송</div>
+      <ul>
+        <li>방법론 발췌 eBook(연산자·오접힘 범례)</li>
+        <li>실제 브리프 표지·구조 미리보기</li>
+        <li>구독 시작 시 첫 호 우선 안내</li>
+        <li class="off">전체 프리모템·출처 원장</li>
+      </ul>
+      <a class="tcta" href="#contact" onclick="pickType('sample')">무료 샘플 받기</a>
+    </div>
+
+    <!-- 단건 eBook -->
+    <div class="tier">
+      <div class="tn">단건 · Demos Brief</div>
+      <div class="td">사안 1건을 12~20쪽 프리모템 eBook으로</div>
+      <div class="amt" id="p-brief">₩150,000<small> 부터</small></div>
+      <div class="per">1회 · 맞춤 사안</div>
+      <ul>
+        <li>판정 · 핵심 리스크 · 여론 전환 시나리오</li>
+        <li>가장 위험한 문장 + 대체 문안 3</li>
+        <li>재정 노출·숫자 공격점 + 출처 원장</li>
+        <li>30분 브리핑 콜 포함</li>
+      </ul>
+      <a class="tcta" href="#contact" onclick="pickType('demo')" id="cta-brief">한 건 신청</a>
+    </div>
+
+    <!-- 구독 (Most Popular) -->
+    <div class="tier pop">
+      <div class="pop-tag">가장 많이 선택</div>
+      <div class="tn">구독 · Demos Pro</div>
+      <div class="td">정기 브리프 + 지난 호 아카이브 열람</div>
+      <div class="amt"><span id="p-pro">₩49,000</span><small id="p-pro-unit">/월</small></div>
+      <div class="per" id="p-pro-note">월간 결제 · 언제든 해지</div>
+      <ul>
+        <li>격주 프리모템 브리프(월 2건)</li>
+        <li>전체 아카이브·검색 상시 열람</li>
+        <li>신규 사안 우선 회신(48시간)</li>
+        <li>단건 구매가 30% 할인</li>
+      </ul>
+      <a class="tcta" href="#contact" onclick="pickType('subscribe')" id="cta-pro">구독 시작</a>
+    </div>
+
+    <!-- 리테이너 -->
+    <div class="tier">
+      <div class="tn">조직 · 리테이너</div>
+      <div class="td">팀 단위 상시 검토 · 발표 전 온디맨드</div>
+      <div class="amt">견적</div>
+      <div class="per">팀 시트 + 건당</div>
+      <ul>
+        <li>월 4건+ 온디맨드 프리모템</li>
+        <li>팀 시트·전용 슬랙/보안 경로</li>
+        <li>맞춤 벤치마크·데이터 연동</li>
+        <li>분기 전략 리뷰 세션</li>
+      </ul>
+      <a class="tcta" href="#contact" onclick="pickType('retainer')">상담 요청</a>
+    </div>
+  </div>
+
+  <div class="price-trust rv">
+    <span>✓ 언제든 <b>해지</b></span>
+    <span>✓ 모든 수치에 <b>출처 원장</b></span>
+    <span>✓ 수신자 한정 <b>대외비</b></span>
+    <span>✓ 첫 호 <b>불만족 시 환불</b></span>
+  </div>
+
+  <div class="faq rv">
+    <details><summary>샘플만 먼저 봐도 되나요?</summary>
+      <p>네. 무료 티어에서 방법론 발췌 eBook을 이메일로 즉시 보내 드립니다. 부담 없이 네 렌즈의 작동 방식과 실제 브리프 구조를 먼저 확인한 뒤 결정하시면 됩니다.</p></details>
+    <details><summary>단건과 구독은 무엇이 다른가요?</summary>
+      <p>단건은 특정 사안 하나를 맞춤 프리모템 eBook으로 받는 1회 상품입니다. 구독(Pro)은 격주로 브리프가 오고, 지난 호 아카이브를 상시 열람하며, 신규 사안에 우선 회신이 붙습니다. 상시로 발표·대응이 있는 조직에 맞습니다.</p></details>
+    <details><summary>결제와 해지는 어떻게 하나요?</summary>
+      <p>구독은 월간·연간 중 선택하며 연간은 20% 저렴합니다. 해지는 언제든 가능하고, 남은 기간은 그대로 이용됩니다. 첫 호가 기대에 못 미치면 환불해 드립니다.</p></details>
+    <details><summary>다루는 자료가 민감한데 괜찮나요?</summary>
+      <p>모든 산출물은 수신자 한정 대외비로 다룹니다. 입력은 공개 자료와 의뢰자가 제공한 문서로 한정하며, 출처 불명 자료는 쓰지 않습니다. 미성년자 등은 익명 처리하고, 인물 분석은 공개 발언의 논리적 취약성 평가로 한정합니다.</p></details>
   </div>
 </div></section>
 
@@ -373,9 +528,9 @@
 
   <div class="form-grid">
     <div class="form-aside rv">
-      <div class="li"><div class="ic">1</div><div><h5>유형 선택</h5><p>데모 신청·일반 문의·리테이너·파트너십</p></div></div>
+      <div class="li"><div class="ic">1</div><div><h5>유형 선택</h5><p>무료 샘플·데모·구독·리테이너</p></div></div>
       <div class="li"><div class="ic">2</div><div><h5>맥락 입력</h5><p>검토 대상과 발표 시점, 지키고 싶은 것</p></div></div>
-      <div class="li"><div class="ic">3</div><div><h5>회신</h5><p>단건 프리모템은 48시간 내 검토 가능 여부 회신</p></div></div>
+      <div class="li"><div class="ic">3</div><div><h5>회신</h5><p>샘플은 즉시 발송 · 단건은 48시간 내 회신</p></div></div>
       <p class="conf">입력하신 정보는 문의 응대 목적에만 사용되며, 출처 불명·비공개 자료는 검토 입력으로 쓰지 않습니다.
          민감한 초안은 회신 후 보안 경로로 주고받습니다.</p>
     </div>
@@ -384,11 +539,13 @@
       <form class="demos-form is-demo" id="demosForm" name="demos-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" onsubmit="return submitForm(event)">
         <input type="hidden" name="form-name" value="demos-inquiry">
         <p hidden><label>봇 방지 <input name="bot-field"></label></p>
-        <div class="seg" role="group" aria-label="문의 유형">
-          <button type="button" data-type="demo"    aria-pressed="true"  onclick="pickType('demo')">데모 신청<small>샘플·시연 요청</small></button>
-          <button type="button" data-type="general" aria-pressed="false" onclick="pickType('general')">일반 문의<small>제품·협업 문의</small></button>
-          <button type="button" data-type="retainer" aria-pressed="false" onclick="pickType('retainer')">리테이너<small>월 단위 상시 검토</small></button>
-          <button type="button" data-type="partner"  aria-pressed="false" onclick="pickType('partner')">파트너십<small>기관·언론 제휴</small></button>
+        <div class="seg seg6" role="group" aria-label="문의 유형">
+          <button type="button" data-type="sample"   aria-pressed="false" onclick="pickType('sample')">무료 샘플<small>방법론 발췌</small></button>
+          <button type="button" data-type="demo"     aria-pressed="true"  onclick="pickType('demo')">데모 신청<small>단건·시연</small></button>
+          <button type="button" data-type="subscribe" aria-pressed="false" onclick="pickType('subscribe')">구독 시작<small>정기 브리프</small></button>
+          <button type="button" data-type="general"  aria-pressed="false" onclick="pickType('general')">일반 문의<small>제품·협업</small></button>
+          <button type="button" data-type="retainer" aria-pressed="false" onclick="pickType('retainer')">리테이너<small>상시 검토</small></button>
+          <button type="button" data-type="partner"  aria-pressed="false" onclick="pickType('partner')">파트너십<small>기관·언론</small></button>
         </div>
         <input type="hidden" id="f_type" name="유형" value="데모 신청">
 
@@ -451,12 +608,14 @@
       <div class="foot-col">
         <h6>제품</h6>
         <a href="#value">가치</a><a href="#engines">엔진</a><a href="#output">산출물</a>
+        <a href="#pricing">가격·구독</a>
         <a href="#contact" onclick="pickType('demo')">샘플 브리프 요청</a>
       </div>
       <div class="foot-col">
         <h6>시작하기</h6>
-        <a href="#contact" onclick="pickType('demo')">데모 신청</a>
-        <a href="#contact" onclick="pickType('general')">일반 문의</a>
+        <a href="#contact" onclick="pickType('sample')">무료 샘플 받기</a>
+        <a href="#contact" onclick="pickType('subscribe')">구독 시작</a>
+        <a href="#contact" onclick="pickType('demo')">단건 신청</a>
         <a href="#contact" onclick="pickType('retainer')">리테이너 상담</a>
       </div>
       <div class="foot-col">
@@ -483,19 +642,34 @@
   const INBOX = "core0alpha@gmail.com";
   const ENDPOINT = "";
   const NETLIFY = true;
-  const TYPE_LABEL = {demo:"데모 신청", general:"일반 문의", retainer:"리테이너 상담", partner:"파트너십"};
-  let lastPayload = "";
+  // 결제 링크(Gumroad/Stripe Payment Link/Substack 등). 채우면 해당 CTA가 결제로 직행,
+  // 비우면 문의 폼으로 안내(수동 결제 안내). ─ 언제든 교체 가능.
+  const STORE = { brief:"", pro_monthly:"", pro_annual:"", sample:"" };
+  // 가격(단일 소스). 공개 사이트에 표시되므로 확정가로 조정하세요.
+  const PRICING = {
+    pro_m:{amt:"₩49,000", unit:"/월", note:"월간 결제 · 언제든 해지"},
+    pro_y:{amt:"₩39,000", unit:"/월", note:"연간 ₩470,000 · 20% 절약 · 언제든 해지"}
+  };
+  const TYPE_LABEL = {sample:"무료 샘플", demo:"데모 신청", subscribe:"구독 신청",
+                      general:"일반 문의", retainer:"리테이너 상담", partner:"파트너십"};
+  let lastPayload = "", billing = "m";
 
   function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
     clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);}
 
+  const SUBMIT_LABEL = {sample:'무료 샘플 받기', demo:'데모 신청 보내기', subscribe:'구독 신청 보내기'};
   function pickType(type){
+    // 결제 링크가 설정돼 있으면 바로 결제로 (구독/단건/샘플)
+    const link = type==='subscribe' ? (billing==='y'?STORE.pro_annual:STORE.pro_monthly)
+               : type==='demo' ? STORE.brief
+               : type==='sample' ? STORE.sample : "";
+    if(link){ window.open(link,'_blank','noopener'); return; }
+
     document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.type===type));
     document.getElementById('f_type').value = TYPE_LABEL[type];
     const form=document.getElementById('demosForm');
     form.classList.toggle('is-demo', type==='demo');
-    form.querySelector('.submit').textContent = (type==='demo'?'데모 신청 보내기':'문의 보내기');
-    // 성공카드 떠 있으면 폼 복귀
+    form.querySelector('.submit').textContent = SUBMIT_LABEL[type] || '문의 보내기';
     document.getElementById('doneCard').classList.remove('show');
     form.style.display='block';
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
@@ -503,10 +677,23 @@
 
   function keyword(){
     const v=(document.getElementById('kwin').value||'').trim();
-    if(/데모|시연|demo/i.test(v)){ pickType('demo'); toast('데모 신청 폼으로 이동했습니다'); }
-    else if(/리테이너|월|상시/.test(v)){ pickType('retainer'); toast('리테이너 상담으로 이동'); }
+    if(/구독|정기|pro|subscri/i.test(v)){ pickType('subscribe'); toast('구독 신청으로 이동했습니다'); }
+    else if(/샘플|무료|sample/i.test(v)){ pickType('sample'); toast('무료 샘플 신청으로 이동'); }
+    else if(/데모|시연|단건|demo/i.test(v)){ pickType('demo'); toast('데모 신청 폼으로 이동했습니다'); }
+    else if(/리테이너|상시/.test(v)){ pickType('retainer'); toast('리테이너 상담으로 이동'); }
     else if(/제휴|파트너/.test(v)){ pickType('partner'); toast('파트너십 문의로 이동'); }
     else { pickType('general'); toast('문의 폼으로 이동했습니다'); }
+  }
+
+  // 결제 주기 토글 — Pro 가격 갱신
+  function setBilling(mode){
+    billing = mode;
+    document.getElementById('bmonthly').setAttribute('aria-pressed', mode==='m');
+    document.getElementById('bannual').setAttribute('aria-pressed', mode==='y');
+    const p = mode==='y' ? PRICING.pro_y : PRICING.pro_m;
+    document.getElementById('p-pro').textContent = p.amt;
+    document.getElementById('p-pro-unit').textContent = p.unit;
+    document.getElementById('p-pro-note').textContent = p.note;
   }
 
   function currentType(){
@@ -525,6 +712,9 @@
     L.push(`소속    : ${g('f_org')}`);
     L.push(`직함    : ${g('f_role')}`);
     L.push(`이메일  : ${g('f_email')}`);
+    if(type==='subscribe'){
+      L.push(`구독플랜: Demos Pro (${billing==='y'?'연간 '+PRICING.pro_y.amt+'/월':'월간 '+PRICING.pro_m.amt})`);
+    }
     if(type==='demo'){
       L.push(`검토사안: ${g('f_topic')}`);
       L.push(`예정시점: ${g('f_when')}`);
