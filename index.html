@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demos — 공표되기 전에 검증합니다 · 정무 프리모템</title>
+<meta name="description" content="Demos는 발표 전 정책·메시지·대응을 구조·재정·여론·반박 가능성으로 검증하는 정무 프리모템입니다. 문의·데모 신청.">
+<link rel="icon" href="assets/demos-mark-cyan.png">
+<style>
+  /* ── 브랜드 서체 (아는비서관 아카이브, 로컬 @font-face) ── */
+  @font-face{font-family:'KJC Myungjo';src:url('assets/fonts/KimjungchulMyungjo-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+  @font-face{font-family:'Wanted Sans';src:url('assets/fonts/WantedSans-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+  @font-face{font-family:'Wanted Sans';src:url('assets/fonts/WantedSans-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+  @font-face{font-family:'Wanted Sans';src:url('assets/fonts/WantedSans-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
+  @font-face{font-family:'Wanted Sans';src:url('assets/fonts/WantedSans-Black.ttf') format('truetype');font-weight:900;font-display:swap}
+
+  :root{
+    --dark:#0b0b0c; --dark-2:#121417; --panel:#16191E; --panel-2:#1B1F26;
+    --line:#2A2F37; --line-2:#363C46;
+    --cyan:#0ECEDD; --cyan-dp:#16B8C6; --cyan-deep:#0B7C8A;
+    --coral:#F0563B; --gold:#F2C03A;
+    --cream:#F5EFE1; --white:#F3F5F7;
+    --mut:#93A0AA; --mut-2:#6C7883;
+    --serif:'KJC Myungjo','Nanum Myeongjo',Georgia,serif;
+    --sans:'Wanted Sans','Pretendard',-apple-system,'Segoe UI','Malgun Gothic',sans-serif;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--sans);background:var(--dark);color:var(--white);line-height:1.65;
+       -webkit-font-smoothing:antialiased;font-feature-settings:'tnum' 1;overflow-x:hidden}
+  .num{font-variant-numeric:tabular-nums}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .serif{font-family:var(--serif)}
+  ::selection{background:var(--cyan);color:var(--dark)}
+
+  /* ── 상단바 ── */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.72);backdrop-filter:blur(14px) saturate(160%);
+       border-bottom:1px solid var(--line)}
+  .nav .in{display:flex;align-items:center;gap:22px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:26px;width:auto}
+  .brand .nm{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.3px}
+  .brand .tag{font-size:8.5px;font-weight:800;letter-spacing:2px;color:var(--cyan);margin-top:2px}
+  .nav .links{display:flex;gap:24px;margin-left:auto}
+  .nav .links a{font-size:13.5px;font-weight:600;color:var(--mut);transition:color .15s}
+  .nav .links a:hover{color:var(--white)}
+  .nav .cta{font-size:13px;font-weight:800;color:var(--dark);background:var(--cyan);padding:9px 17px;border-radius:8px;
+            transition:transform .12s,background .15s}
+  .nav .cta:hover{background:var(--cyan-dp);transform:translateY(-1px)}
+  @media(max-width:820px){.nav .links{display:none}}
+
+  /* ── 히어로 ── */
+  .hero{position:relative;padding:104px 0 96px;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .art{position:absolute;inset:0;z-index:0;background:
+     radial-gradient(58% 70% at 82% 30%,rgba(14,206,221,.30),transparent 62%),
+     radial-gradient(46% 60% at 96% 62%,rgba(240,86,59,.20),transparent 60%),
+     radial-gradient(40% 50% at 60% 100%,rgba(242,192,58,.11),transparent 60%);
+     animation:drift 22s ease-in-out infinite alternate}
+  .hero .streaks{position:absolute;inset:0;z-index:0;background:
+     repeating-linear-gradient(58deg,transparent 0 40px,rgba(243,245,247,.028) 40px 41.5px),
+     repeating-linear-gradient(58deg,transparent 0 100px,rgba(14,206,221,.06) 100px 102px);
+     -webkit-mask-image:linear-gradient(210deg,transparent 26%,#000 66%);mask-image:linear-gradient(210deg,transparent 26%,#000 66%)}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-26px,-14px,0) scale(1.06)}}
+  @media (prefers-reduced-motion:reduce){.hero .art{animation:none}}
+  .hero .in{position:relative;z-index:1;max-width:860px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.4px;
+           color:var(--cyan);border:1px solid var(--line-2);background:rgba(14,206,221,.06);
+           padding:6px 13px;border-radius:999px;margin-bottom:26px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(14,206,221,.18)}
+  h1.hh{font-family:var(--serif);font-weight:700;font-size:clamp(38px,6vw,66px);line-height:1.16;letter-spacing:-1px;
+        text-wrap:balance;word-break:keep-all}
+  h1.hh em{font-style:normal;color:var(--cyan)}
+  .hero p.lead{font-size:clamp(15px,2vw,18px);color:var(--cream);opacity:.9;margin-top:24px;max-width:660px;word-break:keep-all}
+  .hero .acts{display:flex;flex-wrap:wrap;gap:13px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;padding:13px 22px;border-radius:10px;
+       cursor:pointer;border:1px solid transparent;transition:transform .12s,background .15s,border-color .15s;font-family:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--coral);color:#fff}
+  .btn-primary:hover{background:#ff6a50}
+  .btn-ghost{background:transparent;color:var(--white);border-color:var(--line-2)}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+  .btn-cyan{background:var(--cyan);color:var(--dark)}
+  .btn-cyan:hover{background:var(--cyan-dp)}
+  /* 키워드 빠른 신청 */
+  .kw{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .kw label{font-size:12.5px;color:var(--mut);font-weight:600}
+  .kw .box{display:flex;background:var(--panel);border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+  .kw input{background:transparent;border:0;color:var(--white);font-family:inherit;font-size:14px;padding:11px 14px;width:210px;outline:none}
+  .kw input::placeholder{color:var(--mut-2)}
+  .kw button{background:var(--panel-2);border:0;border-left:1px solid var(--line-2);color:var(--cyan);font-weight:800;
+             font-size:13px;padding:0 16px;cursor:pointer;font-family:inherit}
+  .kw button:hover{background:#232833}
+  .kw .hint{font-size:11.5px;color:var(--mut-2)}
+
+  .hero .strip{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:30px;margin-top:56px;padding-top:26px;border-top:1px solid var(--line)}
+  .hero .strip div{display:flex;flex-direction:column}
+  .hero .strip .n{font-family:var(--serif);font-weight:700;font-size:26px;color:var(--cyan);line-height:1}
+  .hero .strip .l{font-size:12px;color:var(--mut);margin-top:7px;font-weight:600}
+
+  /* ── 섹션 공통 ── */
+  section.blk{padding:88px 0;border-bottom:1px solid var(--line)}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:1.6px;color:var(--cyan-dp);text-transform:uppercase}
+  .sec-h{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.6vw,38px);line-height:1.28;letter-spacing:-.5px;
+         margin-top:12px;text-wrap:balance;word-break:keep-all}
+  .sec-sub{font-size:15px;color:var(--mut);margin-top:16px;max-width:620px;word-break:keep-all}
+
+  /* Before → After */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:26px;align-items:stretch;margin-top:46px}
+  .ba .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px}
+  .ba .card.after{border-color:var(--cyan-deep);background:linear-gradient(180deg,var(--panel),rgba(14,206,221,.05))}
+  .ba .card h4{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+  .ba .card.after h4{color:var(--cyan)}
+  .ba .card ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:11px}
+  .ba .card li{font-size:14px;color:var(--cream);opacity:.92;padding-left:20px;position:relative;word-break:keep-all}
+  .ba .card li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--mut-2)}
+  .ba .card.after li::before{background:var(--cyan);border-radius:50%}
+  .ba .arrow{display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--cyan);font-weight:800}
+  @media(max-width:820px){.ba{grid-template-columns:1fr}.ba .arrow{transform:rotate(90deg)}}
+
+  /* 엔진 4종 */
+  .engines{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:46px}
+  .eng{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;position:relative;overflow:hidden;
+       transition:transform .18s,border-color .18s}
+  .eng:hover{transform:translateY(-3px);border-color:var(--line-2)}
+  .eng .k{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--cyan-dp)}
+  .eng h3{font-family:var(--serif);font-weight:700;font-size:22px;margin-top:9px;letter-spacing:-.3px}
+  .eng h3 span{font-size:13px;color:var(--mut);font-family:var(--sans);font-weight:600;margin-left:6px}
+  .eng p{font-size:13.5px;color:var(--mut);margin-top:11px;line-height:1.62;word-break:keep-all}
+  .eng .z{position:absolute;right:-24px;bottom:-24px;width:120px;height:120px;opacity:.05;
+          background:no-repeat center/contain}
+  @media(max-width:720px){.engines{grid-template-columns:1fr}}
+
+  /* 산출물 */
+  .out{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;margin-top:46px}
+  .out .shots{display:flex;gap:16px}
+  .out .shots img{width:50%;border-radius:10px;border:1px solid var(--line-2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .out ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:13px}
+  .out li{font-size:14.5px;color:var(--cream);opacity:.92;padding-left:26px;position:relative;word-break:keep-all}
+  .out li::before{content:"→";position:absolute;left:0;color:var(--cyan);font-weight:800}
+  .out .btn{margin-top:26px}
+  @media(max-width:820px){.out{grid-template-columns:1fr}}
+
+  /* ── 문의 폼 ── */
+  #contact{background:linear-gradient(180deg,var(--dark),#08090a)}
+  .form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;margin-top:44px;align-items:start}
+  @media(max-width:900px){.form-grid{grid-template-columns:1fr;gap:34px}}
+  .form-aside .li{display:flex;gap:14px;margin-bottom:22px}
+  .form-aside .li .ic{flex:none;width:34px;height:34px;border-radius:9px;background:rgba(14,206,221,.1);
+       border:1px solid var(--line-2);display:grid;place-items:center;color:var(--cyan);font-weight:800;font-family:var(--serif)}
+  .form-aside .li h5{font-size:14.5px;font-weight:800}
+  .form-aside .li p{font-size:13px;color:var(--mut);margin-top:3px;word-break:keep-all}
+  .form-aside .conf{margin-top:28px;font-size:12px;color:var(--mut-2);border-top:1px solid var(--line);padding-top:18px;line-height:1.7}
+
+  form.demos-form{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:22px}
+  .seg button{font-family:inherit;font-size:13.5px;font-weight:700;color:var(--mut);background:var(--panel-2);
+       border:1px solid var(--line);border-radius:10px;padding:13px 12px;cursor:pointer;text-align:left;transition:.14s;line-height:1.35}
+  .seg button small{display:block;font-size:11px;color:var(--mut-2);font-weight:600;margin-top:3px}
+  .seg button[aria-pressed="true"]{border-color:var(--cyan);color:var(--white);background:rgba(14,206,221,.08)}
+  .seg button[aria-pressed="true"] small{color:var(--cyan)}
+  .seg button[data-type="demo"][aria-pressed="true"]{border-color:var(--coral);background:rgba(240,86,59,.09)}
+  .seg button[data-type="demo"][aria-pressed="true"] small{color:var(--coral)}
+  .fld{margin-bottom:16px}
+  .fld.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label.lb{display:block;font-size:12.5px;font-weight:700;color:var(--cream);margin-bottom:7px}
+  label.lb .req{color:var(--coral);margin-left:3px}
+  .in,textarea.in,select.in{width:100%;background:var(--dark-2);border:1px solid var(--line-2);border-radius:9px;
+       color:var(--white);font-family:inherit;font-size:14px;padding:11px 13px;outline:none;transition:border-color .14s}
+  .in:focus,textarea.in:focus,select.in:focus{border-color:var(--cyan)}
+  textarea.in{resize:vertical;min-height:92px;line-height:1.6}
+  select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),linear-gradient(135deg,var(--mut) 50%,transparent 50%);
+       background-position:calc(100% - 18px) 18px,calc(100% - 13px) 18px;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+  .demo-only{display:none}
+  form.demos-form.is-demo .demo-only{display:block}
+  form.demos-form.is-demo .demo-only.two{display:grid}
+  .submit{width:100%;margin-top:8px;font-size:15px;font-weight:800;padding:15px;border-radius:11px;border:0;cursor:pointer;
+       font-family:inherit;background:var(--cyan);color:var(--dark);transition:background .15s,transform .12s}
+  .submit:hover{background:var(--cyan-dp);transform:translateY(-1px)}
+  form.demos-form.is-demo .submit{background:var(--coral);color:#fff}
+  form.demos-form.is-demo .submit:hover{background:#ff6a50}
+  .formnote{font-size:11.5px;color:var(--mut-2);margin-top:13px;text-align:center;line-height:1.6}
+
+  /* 성공 카드 */
+  .done{display:none;background:var(--panel);border:1px solid var(--cyan-deep);border-radius:18px;padding:34px 30px;text-align:center}
+  .done.show{display:block;animation:pop .3s ease}
+  @keyframes pop{from{opacity:.4;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .done .chk{width:52px;height:52px;border-radius:50%;background:rgba(14,206,221,.12);border:1px solid var(--cyan);
+       display:grid;place-items:center;margin:0 auto 16px;color:var(--cyan);font-size:26px}
+  .done h3{font-family:var(--serif);font-size:22px;font-weight:700}
+  .done p{font-size:14px;color:var(--mut);margin-top:10px;word-break:keep-all}
+  .done .row{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+
+  /* 푸터 */
+  footer{padding:52px 0 40px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+  .foot-brand img{height:30px}
+  .foot-brand .nm{font-family:var(--serif);font-size:22px;font-weight:700;margin-top:10px}
+  .foot-brand .tag{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--cyan);margin-top:4px}
+  .foot-brand p{font-size:13px;color:var(--mut);margin-top:14px;max-width:340px;line-height:1.7;word-break:keep-all}
+  .foot-links{display:flex;gap:60px;flex-wrap:wrap}
+  .foot-col h6{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--mut-2);text-transform:uppercase;margin-bottom:14px}
+  .foot-col a{display:block;font-size:13.5px;color:var(--mut);margin-bottom:10px;cursor:pointer;transition:color .14s}
+  .foot-col a:hover{color:var(--cyan)}
+  .foot-bot{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;
+       flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--mut-2)}
+
+  /* 토스트 */
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:#fff;color:var(--dark);
+       font-size:13px;font-weight:700;padding:12px 22px;border-radius:999px;box-shadow:0 14px 40px rgba(0,0,0,.5);
+       opacity:0;pointer-events:none;transition:.25s;z-index:120}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* 스크롤 리빌 */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ── 상단바 ── -->
+<nav class="nav"><div class="wrap in">
+  <a class="brand" href="#top">
+    <img src="assets/demos-mark-cyan.png" alt="Demos">
+    <span><div class="nm">Demos</div><div class="tag">PRE-SUASION INTELLIGENCE</div></span>
+  </a>
+  <div class="links">
+    <a href="#value">가치</a>
+    <a href="#engines">엔진</a>
+    <a href="#output">산출물</a>
+    <a href="#contact">문의</a>
+  </div>
+  <a class="cta" href="#contact" onclick="pickType('demo')">데모 신청</a>
+</div></nav>
+
+<!-- ── 히어로 ── -->
+<header class="hero" id="top">
+  <div class="art"></div><div class="streaks"></div>
+  <div class="wrap in">
+    <span class="eyebrow"><span class="dot"></span>정무 프리모템 · 48시간 결정 패키지</span>
+    <h1 class="hh">공표되기 전에,<br><em>어디서 터질지</em> 먼저 봅니다.</h1>
+    <p class="lead">Demos는 발표 전 정책·메시지·위기 대응을 <b>여론·구조·재정·반박 가능성</b> 네 렌즈로 검증합니다.
+       혼란을 선택지로, 불안을 근거로, 공격 가능성을 수정 문장으로 바꿉니다.</p>
+    <div class="acts">
+      <button class="btn btn-primary" onclick="pickType('demo')">데모 신청 →</button>
+      <a class="btn btn-ghost" href="#output">샘플 브리프 보기</a>
+    </div>
+    <div class="kw">
+      <label for="kwin">키워드로 바로 신청</label>
+      <div class="box">
+        <input id="kwin" placeholder="예: 데모 신청" autocomplete="off"
+               onkeydown="if(event.key==='Enter')keyword()">
+        <button onclick="keyword()">보내기</button>
+      </div>
+      <span class="hint">‘데모’·‘데모 신청’ 입력 → 신청 폼으로 이동</span>
+    </div>
+    <div class="strip">
+      <div><span class="n num">48시간</span><span class="l">단건 프리모템 회신</span></div>
+      <div><span class="n">4</span><span class="l">렌즈 · Pulse·Anatomy·Ledger·Shield</span></div>
+      <div><span class="n num">2,000건</span><span class="l">코퍼스 기반 실측 분석</span></div>
+      <div><span class="n">100%</span><span class="l">출처 원장 · 근거 역추적</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ── 가치 (Before→After) ── -->
+<section class="blk" id="value"><div class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow">The value</div>
+    <h2 class="sec-h">Demos는 엔트로피를 낮춥니다.</h2>
+    <p class="sec-sub">기사 수백 건, 여론조사 여러 종, 이해관계자 수십 명, 셀 수 없는 공격 가능성 —
+       이 혼란을 결정 가능한 다섯 장으로 압축합니다.</p>
+  </div>
+  <div class="ba rv">
+    <div class="card">
+      <h4>Before — 발표 직전</h4>
+      <ul>
+        <li>기사 수백 건, 무엇이 뇌관인지 모름</li>
+        <li>여론조사는 터진 뒤에야 읽힘</li>
+        <li>이해관계자 반응은 던져 봐야 앎</li>
+        <li>숫자가 어디서 공격받을지 불투명</li>
+        <li>“이대로 내도 되나”라는 내부 불안</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="card after">
+      <h4>After — 브리프 수령 후</h4>
+      <ul>
+        <li>판정 1 — Go / Rewrite / Hold + 시한</li>
+        <li>핵심 리스크 5 · 여론 전환 시나리오</li>
+        <li>가장 위험한 문장 + 대체 문안 3</li>
+        <li>재정·법제 공격점과 선제 방어</li>
+        <li>출처 원장 — claim → source → confidence</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── 엔진 4종 ── -->
+<section class="blk" id="engines"><div class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow">Four lenses</div>
+    <h2 class="sec-h">감(感)을 함수로. 네 개의 엔진.</h2>
+    <p class="sec-sub">공격적 메시지 엔진은 앞에 세우되, 구조·재정 엔진이 뒤에서 품질을 보증합니다.
+       빠름과 신뢰를 함께 잡는 구조입니다.</p>
+  </div>
+  <div class="engines rv">
+    <div class="eng">
+      <div class="k">PULSE</div>
+      <h3>여론 압력 <span>Pulse</span></h3>
+      <p>등록 여론조사와 뉴스강도를 일단위로 얹어, 이 이슈가 지금 어느 방향으로 압력을 만드는지 봅니다. 예측이 아니라 시나리오입니다.</p>
+      <div class="z" style="background-image:url('assets/demos-mark-white.png')"></div>
+    </div>
+    <div class="eng">
+      <div class="k">ANATOMY</div>
+      <h3>구조 해부 <span>Anatomy</span></h3>
+      <p>정책·메시지·대응을 12개 연산자와 15개 원자로 분해하고, 다섯 가지 실패 경로(오접힘)와 해외 선례를 게놈 단위로 비교합니다.</p>
+      <div class="z" style="background-image:url('assets/demos-mark-white.png')"></div>
+    </div>
+    <div class="eng">
+      <div class="k">LEDGER</div>
+      <h3>재정 노출 <span>Ledger</span></h3>
+      <p>비용·재정 영향을 산식·단가·가정까지 명세해 P10/P50/P90으로 냅니다. 어떤 숫자가 헤드라인이 될지 먼저 쥡니다.</p>
+      <div class="z" style="background-image:url('assets/demos-mark-white.png')"></div>
+    </div>
+    <div class="eng">
+      <div class="k">SHIELD</div>
+      <h3>반박 가능성 <span>Shield</span></h3>
+      <p>발화자를 실측 랭킹으로 식별하고, 상대 시점의 공격을 먼저 시뮬레이션합니다. 그 공격이 성립하지 않도록 문장과 설계를 고칩니다.</p>
+      <div class="z" style="background-image:url('assets/demos-mark-white.png')"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── 산출물 ── -->
+<section class="blk" id="output"><div class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow">The deliverable</div>
+    <h2 class="sec-h">대시보드가 아니라, 결정실입니다.</h2>
+    <p class="sec-sub">단건은 12~20쪽 PDF 브리프 + 브리핑으로 전달됩니다.
+       “툴을 쓴다”가 아니라 “결정실에 들어왔다”는 감각.</p>
+  </div>
+  <div class="out rv">
+    <div>
+      <div class="shots">
+        <img src="assets/brief-thumb-cover.png" alt="Demos Brief 표지">
+        <img src="assets/brief-thumb-inner.png" alt="Demos Brief 내지">
+      </div>
+    </div>
+    <div>
+      <ul>
+        <li>표지 → 판정 → Before/After → 네 렌즈 → 권고 → 출처 원장</li>
+        <li>모든 정량 주장에 출처·신뢰도(claim → source → confidence)</li>
+        <li>매운맛은 ‘상대 시점 시뮬레이션’ 안에만 — 봉합용</li>
+        <li>법적 고지·조사 인용 기준까지 검토 완료</li>
+      </ul>
+      <a class="btn btn-cyan" href="#contact" onclick="pickType('demo')">샘플 브리프 요청 →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── 문의 / 데모 신청 ── -->
+<section class="blk" id="contact"><div class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow">Get in touch</div>
+    <h2 class="sec-h">문의 · 데모 신청</h2>
+    <p class="sec-sub">검토가 필요한 발표·정책·메시지가 있으신가요.
+       유형을 고르고 맥락을 남겨 주시면 회신드립니다. 접수 내용은 안전하게 보관됩니다.</p>
+  </div>
+
+  <div class="form-grid">
+    <div class="form-aside rv">
+      <div class="li"><div class="ic">1</div><div><h5>유형 선택</h5><p>데모 신청·일반 문의·리테이너·파트너십</p></div></div>
+      <div class="li"><div class="ic">2</div><div><h5>맥락 입력</h5><p>검토 대상과 발표 시점, 지키고 싶은 것</p></div></div>
+      <div class="li"><div class="ic">3</div><div><h5>회신</h5><p>단건 프리모템은 48시간 내 검토 가능 여부 회신</p></div></div>
+      <p class="conf">입력하신 정보는 문의 응대 목적에만 사용되며, 출처 불명·비공개 자료는 검토 입력으로 쓰지 않습니다.
+         민감한 초안은 회신 후 보안 경로로 주고받습니다.</p>
+    </div>
+
+    <div class="rv">
+      <form class="demos-form is-demo" id="demosForm" name="demos-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" onsubmit="return submitForm(event)">
+        <input type="hidden" name="form-name" value="demos-inquiry">
+        <p hidden><label>봇 방지 <input name="bot-field"></label></p>
+        <div class="seg" role="group" aria-label="문의 유형">
+          <button type="button" data-type="demo"    aria-pressed="true"  onclick="pickType('demo')">데모 신청<small>샘플·시연 요청</small></button>
+          <button type="button" data-type="general" aria-pressed="false" onclick="pickType('general')">일반 문의<small>제품·협업 문의</small></button>
+          <button type="button" data-type="retainer" aria-pressed="false" onclick="pickType('retainer')">리테이너<small>월 단위 상시 검토</small></button>
+          <button type="button" data-type="partner"  aria-pressed="false" onclick="pickType('partner')">파트너십<small>기관·언론 제휴</small></button>
+        </div>
+        <input type="hidden" id="f_type" name="유형" value="데모 신청">
+
+        <div class="fld two">
+          <div><label class="lb" for="f_name">이름<span class="req">*</span></label><input class="in" id="f_name" name="이름" required autocomplete="name"></div>
+          <div><label class="lb" for="f_org">소속 · 조직</label><input class="in" id="f_org" name="소속" autocomplete="organization"></div>
+        </div>
+        <div class="fld two">
+          <div><label class="lb" for="f_role">직함 · 역할</label><input class="in" id="f_role" name="직함"></div>
+          <div><label class="lb" for="f_email">이메일<span class="req">*</span></label><input class="in" id="f_email" name="이메일" type="email" required autocomplete="email"></div>
+        </div>
+
+        <div class="fld demo-only">
+          <label class="lb" for="f_topic">검토 희망 사안 <span style="color:var(--mut-2);font-weight:600">(이슈 · 문서 · 발언)</span></label>
+          <input class="in" id="f_topic" name="검토사안" placeholder="예: 다음 주 발표 예정 입장문 / 특정 쟁점 대응">
+        </div>
+        <div class="fld demo-only two">
+          <div><label class="lb" for="f_when">발표 · 결정 예정 시점</label><input class="in" id="f_when" name="예정시점" placeholder="예: 7/10 오전"></div>
+          <div><label class="lb" for="f_urgency">긴급도</label>
+            <select class="in" id="f_urgency" name="긴급도">
+              <option>보통 — 주 단위</option>
+              <option>빠름 — 48시간 내</option>
+              <option>긴급 — 24시간 내</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fld">
+          <label class="lb" for="f_msg">맥락 · 메시지<span class="req">*</span></label>
+          <textarea class="in" id="f_msg" name="맥락" required placeholder="검토가 필요한 상황과 지키고 싶은 것(속도·명분·재정·중도여론·내부결속 등)을 적어 주세요."></textarea>
+        </div>
+
+        <button class="submit" type="submit">데모 신청 보내기</button>
+        <p class="formnote">‘보내기’를 누르면 접수 내용이 저장되고 메일 초안이 열립니다. 메일이 열리지 않으면 ‘내용 복사’로 전달해 주세요.</p>
+      </form>
+
+      <div class="done" id="doneCard">
+        <div class="chk">✓</div>
+        <h3 id="doneTitle">데모 신청이 접수되었습니다</h3>
+        <p id="doneMsg">메일 클라이언트가 열립니다. 열리지 않으면 아래에서 내용을 복사해 전달해 주세요.</p>
+        <div class="row">
+          <button class="btn btn-cyan" onclick="copyPayload()">내용 복사</button>
+          <button class="btn btn-ghost" onclick="resetForm()">새 문의 작성</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── 푸터 ── -->
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img src="assets/demos-mark-cyan.png" alt="Demos">
+      <div class="nm">Demos</div>
+      <div class="tag">PRE-SUASION INTELLIGENCE</div>
+      <p>발표 전 정책과 메시지를 구조·재정·여론·반박 가능성으로 검증해, 조직이 숨기지 않아도 되는 결정을 하게 만듭니다.</p>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h6>제품</h6>
+        <a href="#value">가치</a><a href="#engines">엔진</a><a href="#output">산출물</a>
+        <a href="#contact" onclick="pickType('demo')">샘플 브리프 요청</a>
+      </div>
+      <div class="foot-col">
+        <h6>시작하기</h6>
+        <a href="#contact" onclick="pickType('demo')">데모 신청</a>
+        <a href="#contact" onclick="pickType('general')">일반 문의</a>
+        <a href="#contact" onclick="pickType('retainer')">리테이너 상담</a>
+      </div>
+      <div class="foot-col">
+        <h6>운영</h6>
+        <a onclick="exportInquiries()">받은 문의 내보내기</a>
+        <a href="mailto:core0alpha@gmail.com">이메일</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2026 Demos × 아는비서관 인텔리전스</span>
+    <span>수신자 한정 · 대외비 문서 원칙 · 미성년자 익명</span>
+  </div>
+</div></footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── 문의 수신 설정 ──────────────────────────────
+  // INBOX  : mailto 폴백 수신 주소
+  // ENDPOINT: 서버 접수용 POST URL(Formspree 등). 비우면 사용 안 함.
+  //           예) "https://formspree.io/f/xxxxxx"
+  // NETLIFY : Netlify 호스팅이면 true (내장 Forms로 서버 접수). 로컬(file://)에선 자동으로 mailto 폴백.
+  const INBOX = "core0alpha@gmail.com";
+  const ENDPOINT = "";
+  const NETLIFY = true;
+  const TYPE_LABEL = {demo:"데모 신청", general:"일반 문의", retainer:"리테이너 상담", partner:"파트너십"};
+  let lastPayload = "";
+
+  function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+    clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);}
+
+  function pickType(type){
+    document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.type===type));
+    document.getElementById('f_type').value = TYPE_LABEL[type];
+    const form=document.getElementById('demosForm');
+    form.classList.toggle('is-demo', type==='demo');
+    form.querySelector('.submit').textContent = (type==='demo'?'데모 신청 보내기':'문의 보내기');
+    // 성공카드 떠 있으면 폼 복귀
+    document.getElementById('doneCard').classList.remove('show');
+    form.style.display='block';
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  }
+
+  function keyword(){
+    const v=(document.getElementById('kwin').value||'').trim();
+    if(/데모|시연|demo/i.test(v)){ pickType('demo'); toast('데모 신청 폼으로 이동했습니다'); }
+    else if(/리테이너|월|상시/.test(v)){ pickType('retainer'); toast('리테이너 상담으로 이동'); }
+    else if(/제휴|파트너/.test(v)){ pickType('partner'); toast('파트너십 문의로 이동'); }
+    else { pickType('general'); toast('문의 폼으로 이동했습니다'); }
+  }
+
+  function currentType(){
+    const b=document.querySelector('.seg button[aria-pressed="true"]');
+    return b?b.dataset.type:'general';
+  }
+
+  function buildPayload(){
+    const g=id=>((document.getElementById(id)||{}).value||'').trim();
+    const type=currentType();
+    const L=[];
+    L.push(`[Demos ${TYPE_LABEL[type]}]`);
+    L.push('─────────────────────────');
+    L.push(`유형    : ${TYPE_LABEL[type]}`);
+    L.push(`이름    : ${g('f_name')}`);
+    L.push(`소속    : ${g('f_org')}`);
+    L.push(`직함    : ${g('f_role')}`);
+    L.push(`이메일  : ${g('f_email')}`);
+    if(type==='demo'){
+      L.push(`검토사안: ${g('f_topic')}`);
+      L.push(`예정시점: ${g('f_when')}`);
+      L.push(`긴급도  : ${g('f_urgency')}`);
+    }
+    L.push('─── 맥락 ───');
+    L.push(g('f_msg'));
+    L.push('─────────────────────────');
+    L.push(`접수시각: ${new Date().toLocaleString('ko-KR')}`);
+    return L.join('\n');
+  }
+
+  function saveLocal(payload){
+    try{
+      const key='demos_inquiries';
+      const arr=JSON.parse(localStorage.getItem(key)||'[]');
+      arr.push({ts:new Date().toISOString(), type:currentType(), body:payload});
+      localStorage.setItem(key, JSON.stringify(arr));
+    }catch(e){}
+  }
+
+  function encodeForm(obj){
+    return Object.keys(obj).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(obj[k])).join('&');
+  }
+  function mailtoFallback(subject,payload){
+    const mail=`mailto:${INBOX}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(payload)}`;
+    window.location.href=mail;
+  }
+
+  function submitForm(e){
+    e.preventDefault();
+    const g=id=>((document.getElementById(id)||{}).value||'').trim();
+    const name=g('f_name'), email=g('f_email'), msg=g('f_msg');
+    if(!name||!email||!msg){ toast('이름·이메일·맥락을 채워 주세요'); return false; }
+    const type=currentType();
+    const payload=buildPayload();
+    lastPayload=payload;
+    saveLocal(payload);
+    const subject=`[Demos ${TYPE_LABEL[type]}] ${name}${g('f_org')?(' · '+g('f_org')):''}`;
+
+    // 성공 카드 즉시 표시(로컬 저장 완료) — 서버 전송은 백그라운드
+    document.getElementById('demosForm').style.display='none';
+    document.getElementById('doneTitle').textContent = TYPE_LABEL[type]+'이 접수되었습니다';
+    const dm=document.getElementById('doneMsg');
+    document.getElementById('doneCard').classList.add('show');
+
+    const local = location.protocol==='file:';
+    const fields={
+      'form-name':'demos-inquiry','유형':TYPE_LABEL[type],'이름':name,'소속':g('f_org'),
+      '직함':g('f_role'),'이메일':email,'검토사안':g('f_topic'),'예정시점':g('f_when'),
+      '긴급도':(type==='demo'?g('f_urgency'):''),'맥락':msg,'접수시각':new Date().toLocaleString('ko-KR')
+    };
+
+    if(ENDPOINT){                                   // ① 지정 엔드포인트(Formspree 등)
+      dm.textContent='접수를 전송하고 있습니다…';
+      fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(fields)})
+        .then(r=>{ dm.textContent = r.ok ? '정상 접수되었습니다. 회신드리겠습니다.' : '전송이 지연됩니다 — 아래 ‘내용 복사’로 전달해 주세요.'; })
+        .catch(()=>{ dm.textContent='네트워크 지연 — 메일 초안을 엽니다.'; mailtoFallback(subject,payload); });
+    } else if(NETLIFY && !local){                   // ② Netlify 내장 Forms
+      dm.textContent='접수를 전송하고 있습니다…';
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encodeForm(fields)})
+        .then(r=>{ dm.textContent = r.ok ? '정상 접수되었습니다. 회신드리겠습니다.' : '전송이 지연됩니다 — ‘내용 복사’로 전달해 주세요.'; })
+        .catch(()=>{ dm.textContent='네트워크 지연 — 메일 초안을 엽니다.'; mailtoFallback(subject,payload); });
+    } else {                                         // ③ 로컬/오프라인 → 메일 초안
+      dm.textContent='메일 초안이 열립니다. 열리지 않으면 아래 ‘내용 복사’로 전달해 주세요.';
+      setTimeout(()=>mailtoFallback(subject,payload), 400);
+    }
+    return false;
+  }
+
+  function copyPayload(){
+    if(!lastPayload){toast('복사할 내용이 없습니다');return;}
+    navigator.clipboard.writeText(lastPayload+"\n\n(받는 곳: "+INBOX+")")
+      .then(()=>toast('문의 내용을 복사했습니다'))
+      .catch(()=>toast('복사 실패 — 직접 선택해 주세요'));
+  }
+
+  function resetForm(){
+    const form=document.getElementById('demosForm');
+    form.reset(); form.style.display='block';
+    document.getElementById('doneCard').classList.remove('show');
+    pickType('demo');
+    window.scrollTo({top:document.getElementById('contact').offsetTop-40,behavior:'smooth'});
+  }
+
+  // 운영: 받은 문의 JSON 내보내기
+  function exportInquiries(){
+    let arr=[];
+    try{arr=JSON.parse(localStorage.getItem('demos_inquiries')||'[]');}catch(e){}
+    if(!arr.length){toast('저장된 문의가 없습니다');return;}
+    const blob=new Blob([JSON.stringify(arr,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download='demos_inquiries.json'; a.click();
+    URL.revokeObjectURL(url);
+    toast(arr.length+'건 내보냈습니다');
+  }
+
+  // 스크롤 리빌
+  const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

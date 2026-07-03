@@ -1,0 +1,14 @@
+# Demos 랜딩 · Netlify 배포 설정
+[build]
+  publish = "."
+
+# 폼 스팸 방지: honeypot(bot-field)는 landing 폼에 내장됨.
+# 제출 알림은 Netlify 대시보드 → Forms → Notifications 에서
+# core0alpha@gmail.com 으로 이메일 알림을 켜면 됩니다.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
